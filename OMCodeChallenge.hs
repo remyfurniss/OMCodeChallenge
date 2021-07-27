@@ -2,19 +2,19 @@ import Data.Char (isDigit)
 
 -- MAIN FUNCTION --
 
-main :: IO Integer
+main :: IO Denominations
 main = do
   putStrLn "Enter value"
   amount <- getLine
   if isValid amount
     then if isDigits $ removeLastPence amount
             --Just return the pence value
-            then return $ read $ removeLastPence amount
+            then return $ penceToDenominations startingDenominations $ read $ removeLastPence amount
             --Contains £s so plit
-            else return $ poundsDecimalToPence $ removeFirstPound $ removeLastPence amount
+            else return $ penceToDenominations startingDenominations $ poundsDecimalToPence $ removeFirstPound $ removeLastPence amount
     else
       --Not valid therefore retun 0
-      return 0
+      return startingDenominations
 
 -- HELPER FUNCTIONS --
 
@@ -253,4 +253,4 @@ runDenominationsTests = map (penceToDenominations  startingDenominations) denomi
 
 --- THE FULL RUN ---
 
-rullFullTest = map ((penceToDenominations  startingDenominations) . testFunction) tests
+runFullTest = map ((penceToDenominations  startingDenominations) . testFunction) tests
