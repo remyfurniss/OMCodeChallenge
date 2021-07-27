@@ -24,17 +24,15 @@ isDigits str = all isDigit str
 
 --Removes the last character if its is p
 removeLastPence :: String -> String
-removeLastPence ("")  =   ""
-removeLastPence ("p")  = ""
-removeLastPence (c:"")  = [c]
---removeLastPence (c:"p") = [c]
+removeLastPence ("")    = ""
+removeLastPence ("p")   = ""
 removeLastPence (c:cs)  = [c] ++ removeLastPence cs
 
 --Removes the fist character if it is £
 removeFirstPound :: String -> String
 removeFirstPound ""       = ""
 removeFirstPound ('£':cs) = cs
-removeFirstPound (c:cs)   = c:cs
+removeFirstPound str      = str
 
 --Converts the string with no £ or p into the total pence value
 poundsDecimalToPence :: String -> Integer
